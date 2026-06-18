@@ -2,43 +2,39 @@ int mode;
 final int INTRO = 0;
 final int GAME = 1;
 final int PAUSE = 2;
-final int GAMEOVER = 3;
 
-//entity variables
+//variables
 float leftx, lefty, leftd;
 float rightx, righty, rightd;
-float ballx, bally, balld, vx, vy;
-
-//score and timer
-int leftscore, rightscore, timer;
-
-//1 player/2player
-boolean AI;
+float puckx, pucky, puckd;
+float vx, vy;
 
 //keyboard variables
-boolean wkey, skey, upkey, downkey;
+boolean wkey, akey, skey, dkey;
+boolean upkey, downkey, leftkey, rightkey;
 
-//music
-
-//colour
+//colours
+color backgroundColor = #FF2EB3;
+color gameColor = #102A43;
+color leftColor = #FF8FAB;
+color rightColor = #8EECF5;
+color puckColor = #FFF3B0;
 
 void setup() {
-  size(800,600);
+  size(800, 600);
   mode = INTRO;
+  textAlign(CENTER, CENTER);
+  rectMode(CENTER);
+
+  resetGame();
 }
 
 void draw() {
-  background(0);
-  
-  if(mode == INTRO) {
+  if (mode == INTRO) {
     intro();
   } else if (mode == GAME) {
     game();
   } else if (mode == PAUSE) {
     pause();
-  } else if (mode == GAMEOVER) {
-    gameover();
-  } else {
-    println("Error: Mode = " + mode);
   }
 }
