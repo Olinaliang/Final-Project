@@ -1,7 +1,10 @@
+import ddf.minim.*;
+
 int mode;
 final int INTRO = 0;
 final int GAME = 1;
 final int PAUSE = 2;
+final int GAMEOVER = 3;
 
 //variables
 float leftx, lefty, leftd;
@@ -9,9 +12,16 @@ float rightx, righty, rightd;
 float puckx, pucky, puckd;
 float vx, vy;
 
+//score
+int leftscore, rightscore;
+
 //keyboard variables
 boolean wkey, akey, skey, dkey;
 boolean upkey, downkey, leftkey, rightkey;
+
+
+Minim minim;
+AudioPlayer theme, success, failure;
 
 //colours
 color backgroundColor = #FF2EB3;
@@ -26,6 +36,12 @@ void setup() {
   textAlign(CENTER, CENTER);
   rectMode(CENTER);
 
+  //sound
+  minim = new Minim(this);
+  theme = minim.loadFile("MUSIC.mp3");
+  success = minim.loadFile("SUCCESS.wav");
+  failure = minim.loadFile("FAILURE.wav");
+
   resetGame();
 }
 
@@ -36,5 +52,7 @@ void draw() {
     game();
   } else if (mode == PAUSE) {
     pause();
+  } else if (mode == GAMEOVER) {
+    gameover();
   }
 }

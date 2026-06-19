@@ -1,4 +1,5 @@
 void intro() {
+  theme.play();
   background(backgroundColor);
 
   textSize(90);
@@ -11,6 +12,8 @@ void intro() {
 
 void introClicks() {
   if (mouseX > width/2 - 150 && mouseX < width/2 + 150 && mouseY > 430 - 50 && mouseY < 430 + 50) {
+    success.rewind();
+    success.play();
     resetGame();
     mode = GAME;
   }
